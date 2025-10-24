@@ -1,0 +1,17 @@
+<div class="app-wrapper">
+  <div class="header">
+    <h4>header</h4>
+  </div>
+
+  <div *ngIf="posts.length">
+    <p>items</p>
+    <ng-container *ngFor="let item of posts">
+      <app-posts [postItem]="item"></app-posts>
+    </ng-container>
+  </div>
+  <div *ngIf="loading">LOADING.......</div>
+
+  <div class="main-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
