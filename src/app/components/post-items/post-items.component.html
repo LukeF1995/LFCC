@@ -1,0 +1,18 @@
+<div *ngIf="postItem" class="post-wrapper">
+  <div class="title">
+    <h4>{{ postItem.title }}&nbsp;</h4>
+
+    <span>({{ postItem.url }})</span>
+  </div>
+  <div class="post-details">
+    <div>
+      {{ postItem.score }} points
+      <span
+        *ngIf="postItem.kids && postItem.kids.length > 0"
+        (click)="goToPostComments()"
+      >
+        | {{ postItem.kids.length }} comments
+      </span>
+    </div>
+  </div>
+</div>
