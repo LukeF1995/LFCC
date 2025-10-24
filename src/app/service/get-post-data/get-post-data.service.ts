@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, forkJoin, Subject } from 'rxjs';
-import { IPosts } from '../configurations/models/posts.model';
+import { Observable, map, forkJoin, Subject, of } from 'rxjs';
+import { IPosts } from '../../configurations/models/posts.model';
+import { IComments } from '../../configurations/models/comments.models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GetDataService {
+export class GetPostDataService {
   private topIds: number[] = [];
   private readonly baseUrl: string = 'https://hacker-news.firebaseio.com/v0/';
-
+  private fetchingBatch = false;
   constructor(private http: HttpClient) {}
 
   //Getting the top stories
-  fetchTopStrories(): Observable<number[]> {
+  fetchStrories(): Observable<number[]> {
     return this.http.get<number[]>(`${this.baseUrl}topstories.json`).pipe(
       map((ids) => {
         this.topIds = ids;
@@ -29,6 +30,18 @@ export class GetDataService {
     const batchRequests = batchIds.map((id) =>
       this.http.get<IPosts>(`${this.baseUrl}item/${id}.json`)
     );
+
     return forkJoin(batchRequests);
+  }
+
+  fetchSinglePost(postId: number): Observable<IPosts> {
+    return this.http.get<IPosts>(`${this.baseUrl}item/${postId}.json`);
+  }
+
+  fetchComments(commentIds: number[]): Observable<IComments[]> {
+    const commentsRequest = commentIds.map((id) =>
+      this.http.get<IComments>(`${this.baseUrl}item/${id}.json`)
+    );
+    return forkJoin(commentsRequest);
   }
 }

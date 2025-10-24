@@ -1,0 +1,14 @@
+.comment-wrapper {
+  border: 2px solid black;
+  ::ng-deep .comment-text {
+    p {
+      margin: 0;
+    }
+  }
+
+  .nested-comments {
+    margin-left: 1rem; /* indent replies */
+    border-left: 1px solid #ddd;
+    padding-left: 0.5rem;
+  }
+}

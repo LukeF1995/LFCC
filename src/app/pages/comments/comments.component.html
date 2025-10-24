@@ -1,0 +1,7 @@
+<a [routerLink]="'home'">Return to homepage</a>
+<div *ngIf="postItem" class="post-comment-wrapper">
+  <app-post-items [postItem]="postItem"></app-post-items>
+  <ng-container *ngFor="let comment of comments">
+    <app-comment-item [comment]="comment"></app-comment-item>
+  </ng-container>
+</div>

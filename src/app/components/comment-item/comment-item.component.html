@@ -1,0 +1,17 @@
+<div *ngIf="comment" class="comment-wrapper">
+  <div class="comment-text" [innerHTML]="comment.text"></div>
+
+  <span
+    *ngIf="comment.kids?.length"
+    class="see-replies"
+    (click)="viewReplies($event)"
+  >
+    {{ showReplies ? "hide replies" : "see replies" }}
+  </span>
+
+  <div *ngIf="showReplies" class="nested-comments">
+    <ng-container *ngFor="let child of nestedComments">
+      <app-comment-item [comment]="child"></app-comment-item>
+    </ng-container>
+  </div>
+</div>
