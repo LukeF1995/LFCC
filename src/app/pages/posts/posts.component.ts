@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { pipe } from 'rxjs';
+import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
 import { IPosts } from 'src/app/configurations/models/posts.model';
 import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.service';
 
@@ -16,7 +18,7 @@ export class PostsComponent implements OnInit {
   allLoaded: boolean;
 
   constructor(
-    private router: Router,
+    private router: ActivatedRoute,
     private getPostDataService: GetPostDataService
   ) {
     this.loading = true;
@@ -26,9 +28,15 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPostDataService
-      .fetchStrories()
-      .subscribe(() => this.loadNextBatch());
+    this.router.paramMap.subscribe((param) => {
+      const urlRoute = param.get('feedType');
+      const feedType: Feed_Types = urlRoute as Feed_Types;
+      this.posts = [];
+      this.loading = true;
+      this.getPostDataService
+        .fetchStrories(feedType)
+        .subscribe(() => this.loadNextBatch());
+    });
   }
 
   ngAfterViewInit() {

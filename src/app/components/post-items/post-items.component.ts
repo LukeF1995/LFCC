@@ -9,6 +9,7 @@ import { IPosts } from 'src/app/configurations/models/posts.model';
 })
 export class PostItemsComponent {
   @Input() postItem!: IPosts;
+  @Input() viewingComment?: boolean;
 
   constructor(private router: Router) {}
 

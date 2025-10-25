@@ -1,0 +1,38 @@
+<div class="header-wrapper">
+  <img src="assets/images/hacker-news-header.png" class="header-icon" />
+  <div class="header-nav-container">
+    <div class="header-tagline">
+      <h1 class="header">Hacker News</h1>
+      <p class="tagline">
+        The latest stories in tech, straight from the community.<br />Curated by
+        developers, for developers.
+      </p>
+    </div>
+    <div class="nav-container">
+      <button
+        class="nav-button"
+        routerLink="/home/topstories"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        Top Stories
+      </button>
+      <button
+        class="nav-button"
+        routerLink="/home/newstories"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        New Stories
+      </button>
+      <button
+        class="nav-button"
+        routerLink="/home/beststories"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        Best Stories
+      </button>
+    </div>
+  </div>
+</div>

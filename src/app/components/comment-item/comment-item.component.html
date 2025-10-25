@@ -1,9 +1,11 @@
 <div *ngIf="comment" class="comment-wrapper">
-  <div class="comment-text" [innerHTML]="comment.text"></div>
-
+  <div class="inline-comment-container">
+    &bull;
+    <div class="comment-text" [innerHTML]="comment.text"></div>
+  </div>
   <span
     *ngIf="comment.kids?.length"
-    class="see-replies"
+    class="replies-toggle"
     (click)="viewReplies($event)"
   >
     {{ showReplies ? "hide replies" : "see replies" }}

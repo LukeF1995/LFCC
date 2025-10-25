@@ -11,6 +11,7 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     PostItemsComponent,
     CommentItemComponent,
     SpinnerComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
