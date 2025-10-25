@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { IPosts } from 'src/app/configurations/models/posts.model';
 import { IComments } from 'src/app/configurations/models/comments.models';
+import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
 
 describe('GetDataService', () => {
   let service: GetPostDataService;
@@ -33,7 +34,7 @@ describe('GetDataService', () => {
     const mockIds = [123, 333, 234];
     httpClientSpy.get.and.returnValue(of(mockIds));
 
-    service.fetchStrories().subscribe((ids) => {
+    service.fetchStrories(Feed_Types.beststories).subscribe((ids) => {
       expect(ids).toEqual(mockIds);
     });
   });

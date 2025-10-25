@@ -2,9 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PostsComponent } from './posts.component';
 import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { PostItemsComponent } from 'src/app/components/post-items/post-items.component';
+import {
+  RouterTestingHarness,
+  RouterTestingModule,
+} from '@angular/router/testing';
 
 describe('PostsComponent', () => {
   let component: PostsComponent;
@@ -26,10 +30,8 @@ describe('PostsComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [PostsComponent, PostItemsComponent],
-      providers: [
-        { provide: GetPostDataService, useValue: mockService },
-        { provide: Router, useValue: mockRouter },
-      ],
+      providers: [{ provide: GetPostDataService, useValue: mockService }],
+      imports: [RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PostsComponent);

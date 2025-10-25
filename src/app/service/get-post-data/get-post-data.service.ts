@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map, forkJoin, Subject, of } from 'rxjs';
 import { IPosts } from '../../configurations/models/posts.model';
 import { IComments } from '../../configurations/models/comments.models';
-
+import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,8 +14,8 @@ export class GetPostDataService {
   constructor(private http: HttpClient) {}
 
   //Getting the top stories
-  fetchStrories(): Observable<number[]> {
-    return this.http.get<number[]>(`${this.baseUrl}topstories.json`).pipe(
+  fetchStrories(storyType: Feed_Types): Observable<number[]> {
+    return this.http.get<number[]>(`${this.baseUrl}${storyType}.json`).pipe(
       map((ids) => {
         this.topIds = ids;
         return ids;

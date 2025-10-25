@@ -7,6 +7,7 @@ import { IPosts } from 'src/app/configurations/models/posts.model';
 import { IComments } from 'src/app/configurations/models/comments.models';
 import { of } from 'rxjs';
 import { PostItemsComponent } from 'src/app/components/post-items/post-items.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 describe('CommentsComponent', () => {
   let component: CommentsComponent;
@@ -34,7 +35,7 @@ describe('CommentsComponent', () => {
     ]);
 
     TestBed.configureTestingModule({
-      declarations: [CommentsComponent, PostItemsComponent],
+      declarations: [CommentsComponent, PostItemsComponent, SpinnerComponent],
       imports: [RouterModule],
       providers: [
         { provide: GetPostDataService, useValue: mockService },

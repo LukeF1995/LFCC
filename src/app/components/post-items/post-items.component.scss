@@ -1,9 +1,43 @@
+@import "../../../assets/styles.scss";
+
 .post-wrapper {
-  padding-bottom: 8px;
-  .title {
-    h4 {
-      display: inline;
-      margin: 0px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  padding-left: 15px;
+  .title-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    text-decoration: none;
+
+    color: #0074cc;
+    padding-bottom: 6px;
+    .title {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+        color: #339dff;
+      }
+    }
+    .icon {
+      width: 16x;
+      height: 16px;
+    }
+  }
+  .url {
+    font-style: italic;
+  }
+  .post-details {
+    margin-right: 15px;
+    color: #555;
+    font-size: 0.9rem;
+    .view-comments {
+      text-decoration: underline;
+      cursor: pointer;
+      &:hover {
+        color: #0074cc;
+      }
     }
   }
 }
