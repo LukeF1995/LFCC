@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CommentsComponent } from './comments.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.service';

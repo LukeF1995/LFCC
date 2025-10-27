@@ -12,7 +12,8 @@
   <div class="post-meta-data">
     <div class="meta-item-conatiner">
       <img src="assets/images/thumbs-up.png" class="meta-icon" />
-      {{ postItem.score }} points by {{ postItem.by }}
+      {{ postItem.score }} point{{ postItem.score === 1 ? "" : "s" }} by
+      {{ postItem.by }}
     </div>
     <div
       class="meta-item-conatiner"
@@ -21,7 +22,9 @@
       (click)="goToPostComments()"
     >
       <img src="assets/images/replies.png" class="meta-icon" />
-      {{ postItem.kids.length }} comments
+      {{ postItem.kids.length }} comment{{
+        postItem.kids.length === 0 ? "s" : ""
+      }}
     </div>
   </div>
 </div>

@@ -11,6 +11,8 @@
     {{ showReplies ? "hide replies" : "see replies" }}
   </span>
 
+  <app-spinner *ngIf="loadingComments" [loadingComments]="true"></app-spinner>
+
   <div *ngIf="showReplies" class="nested-comments">
     <ng-container *ngFor="let child of nestedComments">
       <app-comment-item

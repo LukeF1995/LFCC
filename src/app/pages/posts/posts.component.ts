@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { pipe } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
 import { IPosts } from 'src/app/configurations/models/posts.model';
 import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.service';
@@ -36,7 +35,7 @@ export class PostsComponent implements OnInit {
       this.posts = [];
       this.displayErrorMessage = false;
 
-      this.getPostDataService.fetchStrories(feedType).subscribe({
+      this.getPostDataService.fetchStories(feedType).subscribe({
         next: () => {
           this.loadNextBatch();
         },
