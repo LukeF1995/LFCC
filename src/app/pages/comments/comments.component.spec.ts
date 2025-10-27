@@ -6,7 +6,7 @@ import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.
 import { IPosts } from 'src/app/configurations/models/posts.model';
 import { IComments } from 'src/app/configurations/models/comments.models';
 import { of } from 'rxjs';
-import { PostItemsComponent } from 'src/app/components/post-items/post-items.component';
+import { PostItemComponent } from 'src/app/components/post-item/post-item.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 describe('CommentsComponent', () => {
@@ -30,12 +30,12 @@ describe('CommentsComponent', () => {
 
   beforeEach(() => {
     mockService = jasmine.createSpyObj('GetPostDataService', [
-      'fetchSinglePost',
+      'fetchItem',
       'fetchComments',
     ]);
 
     TestBed.configureTestingModule({
-      declarations: [CommentsComponent, PostItemsComponent, SpinnerComponent],
+      declarations: [CommentsComponent, PostItemComponent, SpinnerComponent],
       imports: [RouterModule],
       providers: [
         { provide: GetPostDataService, useValue: mockService },
@@ -48,7 +48,7 @@ describe('CommentsComponent', () => {
     fixture = TestBed.createComponent(CommentsComponent);
     component = fixture.componentInstance;
 
-    mockService.fetchSinglePost.and.returnValue(of(mockPost));
+    mockService.fetchItem.and.returnValue(of(mockPost));
     mockService.fetchComments.and.returnValue(of(mockComments));
     fixture.detectChanges();
   });

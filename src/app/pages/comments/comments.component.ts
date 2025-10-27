@@ -25,7 +25,7 @@ export class CommentsComponent implements OnInit {
 
     if (postId) {
       this.getPostDataService
-        .fetchSinglePost(postId)
+        .fetchItem<IPosts>(postId)
         .pipe(
           switchMap((post) => {
             this.postItem = post;

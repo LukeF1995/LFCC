@@ -1,5 +1,13 @@
 .comments-wrapper {
+  .post-item {
+    display: block;
+    height: 110px;
+    margin: 10px 10px 25px 10px;
+    width: 97vw;
+  }
   .comments-list {
-    padding-left: 25px;
+    padding-left: 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }

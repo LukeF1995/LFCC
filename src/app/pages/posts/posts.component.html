@@ -1,8 +1,11 @@
 <div class="posts-list-container">
-  <app-post-items
-    *ngFor="let item of posts"
-    class="post-item"
-    [postItem]="item"
-  ></app-post-items>
+  <ng-container *ngFor="let item of posts">
+    <app-post-item
+      *ngIf="item"
+      class="post-item"
+      [postItem]="item"
+    ></app-post-item>
+  </ng-container>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
+<app-error-state *ngIf="displayErrorMessage"></app-error-state>

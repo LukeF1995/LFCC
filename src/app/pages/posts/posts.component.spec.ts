@@ -4,7 +4,7 @@ import { PostsComponent } from './posts.component';
 import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { PostItemsComponent } from 'src/app/components/post-items/post-items.component';
+import { PostItemComponent } from 'src/app/components/post-item/post-item.component';
 import {
   RouterTestingHarness,
   RouterTestingModule,
@@ -29,7 +29,7 @@ describe('PostsComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
-      declarations: [PostsComponent, PostItemsComponent],
+      declarations: [PostsComponent, PostItemComponent],
       providers: [{ provide: GetPostDataService, useValue: mockService }],
       imports: [RouterTestingModule],
     }).compileComponents();

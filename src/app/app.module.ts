@@ -6,22 +6,24 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostsComponent } from './pages/posts/posts.component';
 import { CommentsComponent } from './pages/comments/comments.component';
-import { PostItemsComponent } from './components/post-items/post-items.component';
+import { PostItemComponent } from './components/post-item/post-item.component';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
+import { ErrorStateComponent } from './components/error-state/error-state.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
     CommentsComponent,
-    PostItemsComponent,
+    PostItemComponent,
     CommentItemComponent,
     SpinnerComponent,
     HeaderComponent,
+    ErrorStateComponent,
   ],
   imports: [
     BrowserModule,

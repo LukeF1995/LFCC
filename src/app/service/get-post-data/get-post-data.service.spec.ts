@@ -43,7 +43,7 @@ describe('GetDataService', () => {
     const mockPost: IPosts = {} as IPosts;
     httpClientSpy.get.and.returnValue(of(mockPost));
 
-    service.fetchSinglePost(1111).subscribe((post) => {
+    service.fetchItem(1111).subscribe((post) => {
       expect(post).toEqual(mockPost);
     });
   });

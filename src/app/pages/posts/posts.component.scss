@@ -4,8 +4,9 @@
   gap: 15px;
   padding: 18px;
   padding-left: 5px;
-
+  grid-auto-rows: 1fr;
   .post-item {
     margin: 8px;
+    height: 110px;
   }
 }

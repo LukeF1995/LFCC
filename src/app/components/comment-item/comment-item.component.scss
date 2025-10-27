@@ -1,21 +1,22 @@
 @import "../../../assets/styles.scss";
 
 .comment-wrapper {
-  padding: 5px 10px;
-  padding-top: 5px;
+  padding: 10px 0px 10px 5px;
+
+  max-width: 100%;
   ::ng-deep .comment-text {
+    margin-bottom: 10px;
     p {
-      margin-top: 0;
-      margin-bottom: 10px;
       font-family: $font-primary;
+      padding: 5px;
+      margin: 0px;
     }
   }
 
   .nested-comments {
-    margin-left: 1rem;
-    padding-left: 0.5rem;
-    padding-top: 0.5rem;
-    border-left: 1px solid #ddd;
+    border-left: 1px dashed black;
+    margin-left: 25px;
+    max-width: calc(100% - 25px);
   }
 
   .inline-comment-container {
@@ -26,8 +27,7 @@
 
   .replies-toggle {
     margin-left: 15px;
-    margin-top: 10px;
-    padding-bottom: 6px;
+
     text-decoration: underline;
     color: #555;
     cursor: pointer;

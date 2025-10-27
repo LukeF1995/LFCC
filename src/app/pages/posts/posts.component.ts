@@ -16,6 +16,7 @@ export class PostsComponent implements OnInit {
   limit: number;
   loading: boolean;
   allLoaded: boolean;
+  displayErrorMessage: boolean;
 
   constructor(
     private router: ActivatedRoute,
@@ -25,6 +26,7 @@ export class PostsComponent implements OnInit {
     this.allLoaded = false;
     this.start = 0;
     this.limit = 20;
+    this.displayErrorMessage = false;
   }
 
   ngOnInit(): void {
@@ -32,10 +34,16 @@ export class PostsComponent implements OnInit {
       const urlRoute = param.get('feedType');
       const feedType: Feed_Types = urlRoute as Feed_Types;
       this.posts = [];
-      this.loading = true;
-      this.getPostDataService
-        .fetchStrories(feedType)
-        .subscribe(() => this.loadNextBatch());
+      this.displayErrorMessage = false;
+
+      this.getPostDataService.fetchStrories(feedType).subscribe({
+        next: () => {
+          this.loadNextBatch();
+        },
+        error: () => {
+          this.handleError();
+        },
+      });
     });
   }
 
@@ -47,14 +55,16 @@ export class PostsComponent implements OnInit {
   //Loading new batch, increasing start value to account for additional values
   loadNextBatch() {
     this.loading = true;
-    this.getPostDataService
-      .fetchNextBatch(this.start, this.limit)
-      .subscribe((batch) => {
+    this.getPostDataService.fetchNextBatch(this.start, this.limit).subscribe({
+      next: (batch) => {
         this.posts = [...this.posts, ...batch];
         this.start += this.limit;
-
         this.loading = false;
-      });
+      },
+      error: () => {
+        this.handleError();
+      },
+    });
   }
 
   //scroll event for infinite scrolling
@@ -67,5 +77,10 @@ export class PostsComponent implements OnInit {
     if (scrollPosition >= threshold) {
       this.loadNextBatch();
     }
+  }
+
+  private handleError() {
+    this.loading = false;
+    this.displayErrorMessage = true;
   }
 }
