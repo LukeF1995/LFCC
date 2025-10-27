@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { GetPostDataService } from './get-post-data.service';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { IPosts } from 'src/app/configurations/models/posts.model';
 import { IComments } from 'src/app/configurations/models/comments.models';
 import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
@@ -10,8 +10,6 @@ import { Feed_Types } from 'src/app/configurations/enums/story-types.enum';
 describe('GetDataService', () => {
   let service: GetPostDataService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
-
-  const baseUrl = 'https://hacker-news.firebaseio.com/v0/';
 
   beforeEach(() => {
     const httpSpy = jasmine.createSpyObj('HttpClient', ['get']);
@@ -30,21 +28,52 @@ describe('GetDataService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch top stories', () => {
-    const mockIds = [123, 333, 234];
-    httpClientSpy.get.and.returnValue(of(mockIds));
+  describe('fetchStories(feedTypes)', () => {
+    it('should fetch best stories', () => {
+      const mockIds = [123, 333, 234];
+      httpClientSpy.get.and.returnValue(of(mockIds));
 
-    service.fetchStrories(Feed_Types.beststories).subscribe((ids) => {
-      expect(ids).toEqual(mockIds);
+      service.fetchStories(Feed_Types.beststories).subscribe((ids) => {
+        expect(ids).toEqual(mockIds);
+      });
+    });
+    it('should handle and throw an error', () => {
+      const mockError = new Error('Network error');
+      httpClientSpy.get.and.returnValue(throwError(() => mockError));
+
+      service.fetchStories(Feed_Types.newstories).subscribe({
+        error: (err) => {
+          expect(err).toBe(mockError);
+        },
+      });
     });
   });
 
-  it('should fetch a single post', () => {
-    const mockPost: IPosts = {} as IPosts;
-    httpClientSpy.get.and.returnValue(of(mockPost));
+  describe('fetchItem<T>()', () => {
+    it('should fetch a single item', () => {
+      const mockPost: IPosts = {
+        id: 1111,
+        title: 'Some sort of post',
+      } as IPosts;
 
-    service.fetchItem(1111).subscribe((post) => {
-      expect(post).toEqual(mockPost);
+      httpClientSpy.get.and.returnValue(of(mockPost));
+
+      service.fetchItem<IPosts>(1111).subscribe({
+        next: (post) => {
+          expect(post).toEqual(mockPost);
+        },
+      });
+    });
+
+    it('should handle error and throw it', () => {
+      const mockError = new Error('error');
+      httpClientSpy.get.and.returnValue(throwError(() => mockError));
+
+      service.fetchItem<IPosts>(1111).subscribe({
+        error: (err) => {
+          expect(err).toBe(mockError);
+        },
+      });
     });
   });
 

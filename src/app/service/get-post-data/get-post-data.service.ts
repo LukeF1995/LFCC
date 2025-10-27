@@ -14,7 +14,7 @@ export class GetPostDataService {
   constructor(private http: HttpClient) {}
 
   //Getting the stories based on the feed type requested
-  fetchStrories(storyType: Feed_Types): Observable<number[]> {
+  fetchStories(storyType: Feed_Types): Observable<number[]> {
     return this.http.get<number[]>(`${this.baseUrl}${storyType}.json`).pipe(
       tap((ids) => (this.topIds = ids)),
       catchError((error) => {

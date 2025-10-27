@@ -11,9 +11,13 @@ export class CommentItemComponent implements OnInit {
   @Input() comment!: IComments;
   nestedCommentsIds: number[] | undefined;
   nestedComments?: IComments[];
-  showReplies: boolean = false;
+  showReplies: boolean;
+  loadingComments: boolean;
 
-  constructor(private getPostDataService: GetPostDataService) {}
+  constructor(private getPostDataService: GetPostDataService) {
+    this.showReplies = false;
+    this.loadingComments = false;
+  }
 
   ngOnInit(): void {
     const nestedComments = this.comment?.kids;
@@ -34,11 +38,13 @@ export class CommentItemComponent implements OnInit {
       return;
     }
 
+    this.loadingComments = true;
+
     this.getPostDataService
       .fetchComments(this.nestedCommentsIds!)
       .subscribe((comments) => {
         this.nestedComments = comments;
-        console.log(this.nestedComments);
+        this.loadingComments = false;
         this.toggleReplies();
       });
   }
