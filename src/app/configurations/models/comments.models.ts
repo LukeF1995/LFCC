@@ -6,4 +6,5 @@ export interface IComments {
   time: number;
   type: string;
   kids?: number[];
+  deleted?: boolean;
 }
