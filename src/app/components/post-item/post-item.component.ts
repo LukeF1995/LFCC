@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { IPosts } from 'src/app/configurations/models/posts.model';
 
 @Component({
-  selector: 'app-post-items',
-  templateUrl: './post-items.component.html',
-  styleUrls: ['./post-items.component.scss'],
+  selector: 'app-post-item',
+  templateUrl: './post-item.component.html',
+  styleUrls: ['./post-item.component.scss'],
 })
-export class PostItemsComponent {
+export class PostItemComponent {
   @Input() postItem!: IPosts;
   @Input() viewingComment?: boolean;
 

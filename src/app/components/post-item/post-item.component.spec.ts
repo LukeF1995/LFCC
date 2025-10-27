@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostItemsComponent } from './post-items.component';
+import { PostItemComponent } from './post-item.component';
 import { CommonModule } from '@angular/common';
 
 describe('PostItemsComponent', () => {
-  let component: PostItemsComponent;
-  let fixture: ComponentFixture<PostItemsComponent>;
+  let component: PostItemComponent;
+  let fixture: ComponentFixture<PostItemComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PostItemsComponent],
+      declarations: [PostItemComponent],
       imports: [CommonModule],
     });
-    fixture = TestBed.createComponent(PostItemsComponent);
+    fixture = TestBed.createComponent(PostItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

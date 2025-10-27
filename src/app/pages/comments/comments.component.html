@@ -1,8 +1,5 @@
 <div *ngIf="postItem" class="comments-wrapper">
-  <app-post-items
-    [postItem]="postItem"
-    [viewingComment]="true"
-  ></app-post-items>
+  <app-post-item [postItem]="postItem" [viewingComment]="true"></app-post-item>
   <div class="comments-list">
     <!-- check though each comment and make sure only ones that have text are returned-->
     <app-spinner *ngIf="!comments.length"></app-spinner>
