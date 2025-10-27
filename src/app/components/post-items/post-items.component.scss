@@ -1,36 +1,50 @@
 @import "../../../assets/styles.scss";
 
 .post-wrapper {
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-  padding-left: 15px;
-  .title-container {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: bold;
-    text-decoration: none;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #eaeaea;
+  padding: 10px;
+  .post-link-data {
+    .title-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #0074cc;
+      .title {
+        cursor: pointer;
 
-    color: #0074cc;
-    padding-bottom: 6px;
-    .title {
-      cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-        color: #339dff;
+        &:hover {
+          text-decoration: underline;
+          color: #339dff;
+        }
+      }
+      .title-icon {
+        width: 16x;
+        height: 16px;
       }
     }
-    .icon {
-      width: 16x;
-      height: 16px;
+    .url {
+      font-style: italic;
+      display: block;
+      max-width: inherit;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: help;
     }
   }
-  .url {
-    font-style: italic;
-  }
-  .post-details {
-    margin-right: 15px;
+  .post-meta-data {
     color: #555;
+    font-size: 0.9rem;
+    background: #f7f7f7;
     font-size: 0.9rem;
     .view-comments {
       text-decoration: underline;
@@ -38,6 +52,15 @@
       &:hover {
         color: #0074cc;
       }
+    }
+    .meta-item-container {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .meta-icon {
+      height: 12px;
+      width: 12px;
     }
   }
 }

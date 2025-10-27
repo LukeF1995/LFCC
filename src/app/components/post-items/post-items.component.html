@@ -1,27 +1,27 @@
 <div *ngIf="postItem" class="post-wrapper">
-  <div class="title-container">
-    <img src="assets/images/www-icon.png" class="icon" />
-    <a class="title" [href]="postItem.url">{{ postItem.title }}&nbsp;</a>
+  <div class="post-link-data">
+    <div class="title-container">
+      <img src="assets/images/www-icon.png" class="title-icon" />
+      <a class="title" [href]="postItem.url">{{ postItem.title }}&nbsp;</a>
+    </div>
+    <p *ngIf="postItem.url" title="{{ postItem.url }}" class="url">
+      {{ postItem.url }}
+    </p>
   </div>
-  <p
-    *ngIf="postItem.url"
-    title="View the full article on {{ postItem.url }}"
-    class="url"
-  >
-    ({{ postItem.url }})
-  </p>
 
-  <div class="post-details">
-    <div>
+  <div class="post-meta-data">
+    <div class="meta-item-conatiner">
+      <img src="assets/images/thumbs-up.png" class="meta-icon" />
       {{ postItem.score }} points by {{ postItem.by }}
-      <span
-        *ngIf="postItem.kids && postItem.kids.length > 0"
-        (click)="goToPostComments()"
-      >
-        |<span [class.view-comments]="!viewingComment">
-          {{ postItem.kids.length }} comments</span
-        >
-      </span>
+    </div>
+    <div
+      class="meta-item-conatiner"
+      [class.view-comments]="!viewingComment"
+      *ngIf="postItem.kids && postItem.kids.length > 0"
+      (click)="goToPostComments()"
+    >
+      <img src="assets/images/replies.png" class="meta-icon" />
+      {{ postItem.kids.length }} comments
     </div>
   </div>
 </div>

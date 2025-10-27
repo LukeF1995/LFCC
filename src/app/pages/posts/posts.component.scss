@@ -1,0 +1,11 @@
+.posts-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 15px;
+  padding: 18px;
+  padding-left: 5px;
+
+  .post-item {
+    margin: 8px;
+  }
+}

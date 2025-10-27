@@ -6,8 +6,11 @@
   <div class="comments-list">
     <!-- check though each comment and make sure only ones that have text are returned-->
     <app-spinner *ngIf="!comments.length"></app-spinner>
-    <ng-container *ngFor="let comment of comments">
-      <app-comment-item [comment]="comment"></app-comment-item>
+    <ng-container *ngFor="let child of comments">
+      <app-comment-item
+        *ngIf="!child.deleted"
+        [comment]="child"
+      ></app-comment-item>
     </ng-container>
   </div>
 </div>

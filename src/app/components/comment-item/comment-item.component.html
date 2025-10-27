@@ -13,7 +13,10 @@
 
   <div *ngIf="showReplies" class="nested-comments">
     <ng-container *ngFor="let child of nestedComments">
-      <app-comment-item [comment]="child"></app-comment-item>
+      <app-comment-item
+        *ngIf="!child.deleted"
+        [comment]="child"
+      ></app-comment-item>
     </ng-container>
   </div>
 </div>

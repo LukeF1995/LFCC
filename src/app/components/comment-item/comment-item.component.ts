@@ -28,6 +28,12 @@ export class CommentItemComponent implements OnInit {
 
   viewReplies(event: Event) {
     event.stopPropagation();
+
+    if (this.showReplies || this.nestedComments?.length) {
+      this.toggleReplies();
+      return;
+    }
+
     this.getPostDataService
       .fetchComments(this.nestedCommentsIds!)
       .subscribe((comments) => {
