@@ -5,7 +5,7 @@ Built with Angular 16, TypeScript, and RxJS
 ### 1. Clone the repository, install dependencies and run the app
 
 ```bash
-    git clone https://github.com/yourusername/hacker-news-clone.git
+    git clone https://github.com/LukeF1995/LFCC.git
     cd LFCC
     npm install
     ng serve
