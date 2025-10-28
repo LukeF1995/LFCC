@@ -3,12 +3,12 @@
 .posts-list-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 15px;
-  padding: 18px;
-  padding-left: 5px;
+  column-gap: 10px;
+  row-gap: 20px;
+  padding: 12px;
   grid-auto-rows: 1fr;
   .post-item {
-    margin: 8px;
+    margin-top: 10px;
     height: 110px;
   }
 }

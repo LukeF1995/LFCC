@@ -14,7 +14,6 @@ export class PostsComponent implements OnInit {
   start: number;
   limit: number;
   loading: boolean;
-  allLoaded: boolean;
   displayErrorMessage: boolean;
 
   constructor(
@@ -22,12 +21,12 @@ export class PostsComponent implements OnInit {
     private getPostDataService: GetPostDataService
   ) {
     this.loading = true;
-    this.allLoaded = false;
     this.start = 0;
     this.limit = 20;
     this.displayErrorMessage = false;
   }
 
+  //Getting the feed type (best, top, new) from the route
   ngOnInit(): void {
     this.router.paramMap.subscribe((param) => {
       const urlRoute = param.get('feedType');

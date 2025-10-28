@@ -1,11 +1,12 @@
 @import "../../../assets/styles.scss";
 
 .comments-wrapper {
+  padding-top: 18px;
+  max-width: inherit;
   .post-item {
     display: block;
     height: 110px;
     margin: 10px 10px 25px 10px;
-    width: 97vw;
   }
   .comments-list {
     padding-left: 1rem;

@@ -11,15 +11,22 @@ import { GetPostDataService } from 'src/app/service/get-post-data/get-post-data.
   styleUrls: ['./comments.component.scss'],
 })
 export class CommentsComponent implements OnInit {
-  postItem!: IPosts;
+  postItem?: IPosts;
   comments: IComments[];
+  loading: boolean;
+  displayErrorMessage: boolean;
 
   constructor(
     private getPostDataService: GetPostDataService,
     private route: ActivatedRoute
   ) {
     this.comments = [];
+    this.loading = true;
+    this.displayErrorMessage = false;
   }
+
+  //Getting the postid from the route, getting the children (commentIds) of that post and
+  //then switchMap to get the comments
   ngOnInit(): void {
     const postId = +this.route.snapshot.paramMap.get('postId')!;
 
@@ -28,6 +35,9 @@ export class CommentsComponent implements OnInit {
         .fetchItem<IPosts>(postId)
         .pipe(
           switchMap((post) => {
+            if (!post) {
+              this.handleErrors();
+            }
             this.postItem = post;
             if (post.kids?.length) {
               return this.getPostDataService.fetchComments(post.kids);
@@ -35,9 +45,20 @@ export class CommentsComponent implements OnInit {
             return of([]);
           })
         )
-        .subscribe((comments) => {
-          this.comments = comments;
+        .subscribe({
+          next: (comments) => {
+            this.loading = false;
+            this.comments = comments;
+          },
+          error: () => {
+            this.handleErrors();
+          },
         });
     }
+  }
+
+  private handleErrors() {
+    this.loading = false;
+    this.displayErrorMessage = true;
   }
 }
