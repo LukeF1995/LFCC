@@ -19,6 +19,7 @@ export class CommentItemComponent implements OnInit {
     this.loadingComments = false;
   }
 
+  //checking if the comments passed to the components have any repies
   ngOnInit(): void {
     const nestedComments = this.comment?.kids;
     if (nestedComments) {
@@ -30,6 +31,7 @@ export class CommentItemComponent implements OnInit {
     this.showReplies = !this.showReplies;
   }
 
+  //Initial load of the replies to each comment
   viewReplies(event: Event) {
     event.stopPropagation();
 

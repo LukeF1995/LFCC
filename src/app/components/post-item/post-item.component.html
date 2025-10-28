@@ -1,7 +1,11 @@
 <div *ngIf="postItem" class="post-wrapper">
   <div class="post-link-data">
     <div class="title-container">
-      <img src="assets/images/www-icon.png" class="title-icon" />
+      <img
+        src="assets/images/www-icon.png"
+        class="title-icon"
+        alt="title www icon"
+      />
       <a class="title" [href]="postItem.url">{{ postItem.title }}&nbsp;</a>
     </div>
     <p *ngIf="postItem.url" title="{{ postItem.url }}" class="url">
@@ -11,7 +15,11 @@
 
   <div class="post-meta-data">
     <div class="meta-item-conatiner">
-      <img src="assets/images/thumbs-up.png" class="meta-icon" />
+      <img
+        src="assets/images/thumbs-up.png"
+        class="meta-icon"
+        alt="thumbs up icon"
+      />
       {{ postItem.score }} point{{ postItem.score === 1 ? "" : "s" }} by
       {{ postItem.by }}
     </div>
@@ -21,9 +29,13 @@
       *ngIf="postItem.kids && postItem.kids.length > 0"
       (click)="goToPostComments()"
     >
-      <img src="assets/images/replies.png" class="meta-icon" />
+      <img
+        src="assets/images/replies.png"
+        class="meta-icon"
+        alt="message icon"
+      />
       {{ postItem.kids.length }} comment{{
-        postItem.kids.length === 0 ? "s" : ""
+        postItem.kids.length === 1 ? "" : "s"
       }}
     </div>
   </div>

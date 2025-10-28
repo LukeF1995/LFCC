@@ -15,6 +15,7 @@ export class PostItemComponent {
 
   ngOnInit(): void {}
 
+  //Passing the postId through route, will explain why I used this approach in the README
   goToPostComments() {
     this.router.navigate(['/comments', this.postItem.id]);
   }

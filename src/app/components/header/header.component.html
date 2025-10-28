@@ -1,5 +1,9 @@
 <div class="header-wrapper">
-  <img src="assets/images/hacker-news-header.png" class="header-icon" />
+  <img
+    src="assets/images/hacker-news-header.png"
+    class="header-icon"
+    alt="header icon"
+  />
   <div class="header-nav-container">
     <div class="header-tagline">
       <h1 class="header">Hacker News</h1>
@@ -10,28 +14,13 @@
     </div>
     <div class="nav-container">
       <button
+        *ngFor="let button of navButtons"
         class="nav-button"
-        routerLink="/home/topstories"
+        [routerLink]="button.route"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: false }"
       >
-        Top Stories
-      </button>
-      <button
-        class="nav-button"
-        routerLink="/home/newstories"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        New Stories
-      </button>
-      <button
-        class="nav-button"
-        routerLink="/home/beststories"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: false }"
-      >
-        Best Stories
+        {{ button.label }}
       </button>
     </div>
   </div>
